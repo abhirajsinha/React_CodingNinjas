@@ -9,8 +9,8 @@ class CartItem extends React.Component {
       qty: 1,
       img: "",
     };
-    //  Binding This 
-    
+    //  Binding This
+
     // this.increaseQuantity = this.increaseQuantity.bind(this);
     // this.decreaseQuantity = this.decreaseQuantity.bind(this);
     // this.delete = this.delete.bind(this);
@@ -40,30 +40,30 @@ class CartItem extends React.Component {
     //})
 
     //setState form 2
-    this.setState( (prevState) => {
-      return{
-        qty: prevState.qty+1
-      }
-    })
+    this.setState((prevState) => {
+      return {
+        qty: prevState.qty + 1,
+      };
+    });
   };
-// From the both 2 states here we will use the 2nd one because here we need the
-//prev state where we don't need the state we will use state1
+  // From the both 2 states here we will use the 2nd one because here we need the
+  //prev state where we don't need the state we will use state1
   decreaseQuantity = () => {
-    const{qty}=this.state;
-    if(qty===0){
+    const { qty } = this.state;
+    if (qty === 0) {
       return;
     }
-        //setState form 1
-        // this.setState({
-        // qty:this.state.qty-1
-        // })
-    
-        //setState form 2
-        this.setState( (prevState) => {
-          return{
-            qty: prevState.qty-1
-          }
-        })
+    //setState form 1
+    // this.setState({
+    // qty:this.state.qty-1
+    // })
+
+    //setState form 2
+    this.setState((prevState) => {
+      return {
+        qty: prevState.qty - 1,
+      };
+    });
   };
 
   delete = () => {};
@@ -105,7 +105,6 @@ class CartItem extends React.Component {
     );
   }
 }
-
 
 const styles = {
   image: {
