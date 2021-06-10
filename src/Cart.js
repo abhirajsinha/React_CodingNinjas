@@ -4,7 +4,7 @@ export default class Cart extends Component {
   constructor() {
     super();
     this.state = {
-      products: [
+        productsArray: [
         {
           price: 999,
           title: "Mobile Phone",
@@ -30,39 +30,41 @@ export default class Cart extends Component {
     };
   }
 
-  handleIncreaseQuantity = (product) => {
-    const { products } = this.state;
-    const index = products.indexOf(product);
+  handleIncreaseQuantity = (productWhosQuantityToBeIncreased) => {
+    const { productsArray } = this.state;
+    const index = productsArray.indexOf(productWhosQuantityToBeIncreased);
 
-    products[index].qty += 1;
+    productsArray[index].qty += 1;
     this.setState({
-      products,
+        productsArray
     });
   };
 
-  handleDecreaseQuantity = (product) => {
-    const { products } = this.state;
-    const index = products.indexOf(product);
-    if (products[index].qty == 0) return;
-    products[index].qty -= 1;
+  handleDecreaseQuantity = (productWhosQuantityToBeDecreased) => {
+    const { productsArray } = this.state;
+    const index = productsArray.indexOf(productWhosQuantityToBeDecreased);
+
+    if (productsArray[index].qty == 0) return;
+
+    productsArray[index].qty -= 1;
     this.setState({
-      products,
+        productsArray,
     });
   };
 
-  handleDelete = (id) => {
-    const { products } = this.state;
-    const items = products.filter((item) => item.id !== id);
+  handleDelete = (idOfProductToBeDeleted) => {
+    const { productsArray } = this.state;
+    const items = productsArray.filter((item) => item.id !== idOfProductToBeDeleted);
     this.setState({
-        products:items
+        productsArray:items
     })
   };
 
   render() {
-    const { products } = this.state;
+    const { productsArray } = this.state;
     return (
       <div className="cart">
-        {products.map((product) => {
+        {productsArray.map((product) => {
           return (
             <CartItem
               product={product}
