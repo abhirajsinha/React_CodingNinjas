@@ -1,62 +1,7 @@
 import React from "react";
 
 const CartItem = (props) => {
-  //  Binding This
-
-  // this.increaseQuantity = this.increaseQuantity.bind(this);
-  // this.decreaseQuantity = this.decreaseQuantity.bind(this);
-  // this.delete = this.delete.bind(this);
-
-  // this.testing();
-  // testing(){
-  //   const promise=new Promise((resolve,reject) => {
-  //     setTimeout(()=>{
-  //       resolve('done');
-  //     },5000);
-  //   })
-  //   promise.then(()=>{
-  //     //setState acts like a synchronous call
-  //     this.setState({qty: this.setState.qty+1});
-  //     this.setState({qty: this.setState.qty+1});
-  //     this.setState({qty: this.setState.qty+1});
-
-  //     console.log('this.state',this.state);
-  //   });
-  // }
-  // Arrow Function for *Binding this*
-  // increaseQuantity = () => {
-  //setState form 1
-  //this.setState({
-  //qty:this.state.qty+1
-  //})
-
-  //setState form 2
-  //   this.setState((prevState) => {
-  //     return {
-  //       qty: prevState.qty + 1,
-  //     };
-  //   });
-  // };
-  // From the both 2 states here we will use the 2nd one because here we need the
-  //prev state where we don't need the state we will use state1
-  // decreaseQuantity = () => {
-  //   const { qty } = this.state;
-  //   if (qty === 0) {
-  //     return;
-  //   }
-  //setState form 1
-  // this.setState({
-  // qty:this.state.qty-1
-  // })
-
-  //setState form 2
-  //   this.setState((prevState) => {
-  //     return {
-  //       qty: prevState.qty - 1,
-  //     };
-  //   });
-  // };
-
+  
   const { price, title, qty } = props.product;
   const { product, onIncreaseQuantity, onDecreaseQuantity, onDelete } = props;
   return (
