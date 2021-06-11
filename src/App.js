@@ -2,35 +2,37 @@ import React from "react";
 import Cart from "./Cart";
 import CartItem from "./CartItem";
 import Navbar from "./Navbar";
+import firebase from "firebase/app";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      productsArray: [
-        {
-          price: 999,
-          title: "Mobile Phone",
-          qty: 1,
-          img: "",
-          id: 1,
-        },
-        {
-          price: 99,
-          title: "Watch",
-          qty: 10,
-          img: "",
-          id: 2,
-        },
-        {
-          price: 999,
-          title: "Laptop",
-          qty: 20,
-          img: "",
-          id: 3,
-        },
-      ],
+      productsArray: [],
     };
+  }
+
+  componentDidMount() {
+    firebase
+      .firestore()
+      .collection("products")
+      .get()
+      .then((snapshot) => {
+        // console.log("snap---------",snapshot);
+        snapshot.docs.map((doc) => {
+          console.log(doc.data());
+        });
+
+        const productsArray = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          data["id"] = doc.id;
+          return data;
+        });
+        this.setState({
+          productsArray,
+          
+        });
+      });
   }
 
   handleIncreaseQuantity = (productWhosQuantityToBeIncreased) => {
@@ -73,7 +75,7 @@ class App extends React.Component {
       count += product.qty;
     });
     return count;
-  }
+  };
 
   getTotalPrice = () => {
     const { productsArray } = this.state;

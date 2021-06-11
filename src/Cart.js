@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import CartItem from "./CartItem";
 const Cart = (props) => {
-  // console.log("write",this.props.productsArray);
   const { products } = props;
   return (
     <div className="cart">
