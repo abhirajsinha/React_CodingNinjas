@@ -62,7 +62,7 @@ class App extends React.Component {
     //   productsArray,
     // });
 
-    const docRef = this.db.collection("products").doc(productsArray[index].id);
+    const docRef = this.db.collection('products').doc(productsArray[index].id);
 
     docRef
       .update({
@@ -87,7 +87,7 @@ class App extends React.Component {
     //   productsArray,
     // });
 
-    const docRef = this.db.collection("products").doc(productsArray[index].id);
+    const docRef = this.db.collection('products').doc(productsArray[index].id);
 
     docRef
       .update({
@@ -103,11 +103,22 @@ class App extends React.Component {
 
   handleDelete = (idOfProductToBeDeleted) => {
     const { productsArray } = this.state;
-    const items = productsArray.filter(
-      (item) => item.id !== idOfProductToBeDeleted
-    );
-    this.setState({
-      productsArray: items,
+    // const items = productsArray.filter(
+    //   (item) => item.id !== idOfProductToBeDeleted
+    // );
+    // this.setState({
+    //   productsArray: items,
+    // });
+
+    const docRef = this.db.collection('products').doc(idOfProductToBeDeleted);
+  
+
+    docRef.delete()
+    .then(() => {
+      console.log("Document Deleted Successfully");
+    })
+    .catch((error) => {
+      console.log("Error !!!", error);
     });
   };
 
