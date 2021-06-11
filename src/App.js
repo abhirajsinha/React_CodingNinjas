@@ -57,10 +57,23 @@ class App extends React.Component {
     const { productsArray } = this.state;
     const index = productsArray.indexOf(productWhosQuantityToBeIncreased);
 
-    productsArray[index].qty += 1;
-    this.setState({
-      productsArray,
-    });
+    // productsArray[index].qty += 1;
+    // this.setState({
+    //   productsArray,
+    // });
+
+    const docRef = this.db.collection("products").doc(productsArray[index].id);
+
+    docRef
+      .update({
+        qty: productsArray[index].qty + 1,
+      })
+      .then(() => {
+        console.log("Document Updated Successfully");
+      })
+      .catch((error) => {
+        console.log("Error !!!", error);
+      });
   };
 
   handleDecreaseQuantity = (productWhosQuantityToBeDecreased) => {
@@ -69,10 +82,23 @@ class App extends React.Component {
 
     if (productsArray[index].qty == 0) return;
 
-    productsArray[index].qty -= 1;
-    this.setState({
-      productsArray,
-    });
+    // productsArray[index].qty -= 1;
+    // this.setState({
+    //   productsArray,
+    // });
+
+    const docRef = this.db.collection("products").doc(productsArray[index].id);
+
+    docRef
+      .update({
+        qty: productsArray[index].qty - 1,
+      })
+      .then(() => {
+        console.log("Document Updated Successfully");
+      })
+      .catch((error) => {
+        console.log("Error !!!", error);
+      });
   };
 
   handleDelete = (idOfProductToBeDeleted) => {
@@ -114,10 +140,11 @@ class App extends React.Component {
         title: "Protein",
       })
       .then((docRef) => {
-        console.log('Product has been added',docRef)
-      }).catch((error)=>{
-        console.log('error!',error);
+        console.log("Product has been added", docRef);
       })
+      .catch((error) => {
+        console.log("error!", error);
+      });
   };
 
   render() {
@@ -125,7 +152,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <Navbar count={this.getCartCount()} />
-        <button onClick={this.addProduct} style={{padding:20,fontSize:20}}>Add a Product</button>
+        <button onClick={this.addProduct} style={{ padding: 20, fontSize: 20 }}>
+          Add a Product
+        </button>
         <Cart
           products={productsArray}
           onIncreaseQuantity={this.handleIncreaseQuantity}
