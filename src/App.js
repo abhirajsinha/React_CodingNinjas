@@ -9,6 +9,7 @@ class App extends React.Component {
     super();
     this.state = {
       productsArray: [],
+      loading: true,
     };
   }
 
@@ -30,7 +31,7 @@ class App extends React.Component {
         });
         this.setState({
           productsArray,
-          
+          loading:false
         });
       });
   }
@@ -87,7 +88,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { productsArray } = this.state;
+    const { productsArray, loading } = this.state;
     return (
       <div className="App">
         <Navbar count={this.getCartCount()} />
@@ -97,6 +98,7 @@ class App extends React.Component {
           onDecreaseQuantity={this.handleDecreaseQuantity}
           onDelete={this.handleDelete}
         />
+        {loading && <h1>Loading Products ...</h1>}
         <div>
           <h1>Total:{this.getTotalPrice()}</h1>
         </div>
