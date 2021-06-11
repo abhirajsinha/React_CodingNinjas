@@ -14,12 +14,31 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // firebase
+    //   .firestore()
+    //   .collection("products")
+    //   .get()
+    //   .then((snapshot) => {
+    //     // console.log("snap---------",snapshot);
+    //     snapshot.docs.map((doc) => {
+    //       console.log(doc.data());
+    //     });
+
+    //     const productsArray = snapshot.docs.map((doc) => {
+    //       const data = doc.data();
+    //       data["id"] = doc.id;
+    //       return data;
+    //     });
+    //     this.setState({
+    //       productsArray,
+    //       loading:false
+    //     });
+    //   });
+
     firebase
       .firestore()
       .collection("products")
-      .get()
-      .then((snapshot) => {
-        // console.log("snap---------",snapshot);
+      .onSnapshot((snapshot) => {
         snapshot.docs.map((doc) => {
           console.log(doc.data());
         });
@@ -31,7 +50,7 @@ class App extends React.Component {
         });
         this.setState({
           productsArray,
-          loading:false
+          loading: false,
         });
       });
   }
